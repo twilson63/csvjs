@@ -55,5 +55,8 @@ csvjs.parse(data, {
 
 ## License
 
+* see LICENSE
+
 ## Contributions
 
+* Please submit any pull requests or issues to make this lib awesome!
