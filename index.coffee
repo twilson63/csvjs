@@ -24,8 +24,10 @@ module.exports =
 
     options = @_extend(@DEFAULT_OPTIONS, options)
     rows = @_split(data, options.row_sep)
-    # remove last record
-    rows.pop() #if empty line..
+
+    # remove last record nothing there
+    rows.pop() if rows[rows.length - 1].length < 5
+
     # get headers
     keys = @_split rows.shift(), options.col_sep unless options.keys?
     for row, c in rows

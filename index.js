@@ -39,7 +39,9 @@
       }
       options = this._extend(this.DEFAULT_OPTIONS, options);
       rows = this._split(data, options.row_sep);
-      rows.pop();
+      if (rows[rows.length - 1].length < 5) {
+        rows.pop();
+      }
       if (options.keys == null) {
         keys = this._split(rows.shift(), options.col_sep);
       }
