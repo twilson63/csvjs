@@ -53,6 +53,10 @@ csvjs.parse(data, {
 * row_sep = Row Seperator = default = '\r\n'
 * keys = Define your own keys or if null use the first column for keys
 
+## Examples
+
+* see example folder
+
 ## License
 
 * see LICENSE

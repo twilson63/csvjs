@@ -1,7 +1,7 @@
 {
   "name": "csvjs",
   "description": "A csv parser for nodejs",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "homepage": "",
   "author": "Tom Wilson",
   "private": false,
@@ -13,5 +13,5 @@
     "jasmine-node": ">= 1.0.10",
     "docco": ">0"
   },
-  "engines": { "node": ">= 0.4.7" }
+  "engines": { "node": ">= 0.4.11" }
 }
