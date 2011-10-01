@@ -12,14 +12,14 @@
 
 ## Install
 
-```
+``` bash
 npm install csvjs
 
 ```
 
 ## Usage Example in CoffeeScript
 
-```
+``` coffeescript
 fs = require 'fs'
 csvjs = require 'csvjs'
 
@@ -31,7 +31,7 @@ csvjs.parse data, { col_sep: ',', row_sep: "\r\n" }, (row) ->
 
 ## Usage Example in JavaScript
 
-```
+``` javascript
 var csvjs, data, fs;
 fs = require('fs');
 csvjs = require('csvjs');
