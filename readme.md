@@ -1,9 +1,9 @@
-  ____   _________  __ |__| ______
-_/ ___\ /  ___/\  \/ / |  |/  ___/
-\  \___ \___ \  \   /  |  |\___ \ 
- \___  >____  >  \_/\__|  /____  >
-     \/     \/     \______|    \/ 
-
+  ____   _________  __ |__| ______    
+_/ ___\ /  ___/\  \/ / |  |/  ___/     
+\  \___ \___ \  \   /  |  |\___ \       
+ \___  >____  >  \_/\__|  /____  >      
+     \/     \/     \______|    \/     
+    
 ---
 
 # csvjs 
@@ -52,4 +52,8 @@ csvjs.parse(data, {
 * col_sep = Column Seperator = default = ','
 * row_sep = Row Seperator = default = '\r\n'
 * keys = Define your own keys or if null use the first column for keys
+
+## License
+
+## Contributions
 

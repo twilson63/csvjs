@@ -7,15 +7,10 @@
   "private": false,
   "main": "./lib",
   "dependencies": {
-    "express": ">= 2.4.x",
-    "mongoskin": ">= 0.1.x",
-    "connect": ">= 1.6.x",
-    "underscore": ">= 1.1.x"
   },
   "devDependencies": {
     "coffee-script": ">= 1.1.x",
     "jasmine-node": ">= 1.0.10",
-    "request": ">= 2.1.x",
     "docco": ">0"
   },
   "engines": { "node": ">= 0.4.7" }
