@@ -1,35 +1,53 @@
 (function() {
-  var fs;
-  fs = require('fs');
   module.exports = {
-    load: function(file_name) {
-      return fs.readFileSync(file_name).toString();
+    DEFAULT_OPTIONS: {
+      col_sep: ',',
+      row_sep: '\r\n',
+      keys: null
     },
-    getArray: function(data, sep) {
+    _extend: function(obj, mixin) {
+      var method, name;
+      for (name in mixin) {
+        method = mixin[name];
+        obj[name] = method;
+      }
+      return obj;
+    },
+    _split: function(data, sep) {
       return data.split(sep);
     },
-    tidy: function(field) {
+    _tidy: function(field) {
       return field.trim().replace(/^\"/, '').replace(/\"$/, '').trim();
     },
-    arraysToKv: function(keys, values) {
+    _merge: function(keys, values) {
       var i, key, output, _len;
       output = {};
       for (i = 0, _len = keys.length; i < _len; i++) {
         key = keys[i];
-        output[this.tidy(key)] = this.tidy(values[i]);
+        output[this._tidy(key)] = this._tidy(values[i]);
       }
       return output;
     },
-    parse: function(file_name, col_sep, row_sep, cb) {
+    parse: function(data, options, cb) {
       var c, keys, row, rows, values, _len, _results;
-      rows = this.getArray(this.load(file_name), row_sep);
+      if (options == null) {
+        options = {};
+      }
+      if (typeof options === 'function') {
+        cb = options;
+        options = {};
+      }
+      options = this._extend(this.DEFAULT_OPTIONS, options);
+      rows = this._split(data, options.row_sep);
       rows.pop();
-      keys = this.getArray(rows.shift(), col_sep);
+      if (options.keys == null) {
+        keys = this._split(rows.shift(), options.col_sep);
+      }
       _results = [];
       for (c = 0, _len = rows.length; c < _len; c++) {
         row = rows[c];
-        values = this.getArray(row, col_sep);
-        _results.push(cb(this.arraysToKv(keys, values)));
+        values = this._split(row, options.col_sep);
+        _results.push(cb(this._merge(keys, values)));
       }
       return _results;
     }

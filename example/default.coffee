@@ -1,7 +1,7 @@
 fs = require 'fs'
 csvjs = require '../index'
 
+# Example using default options....
 data = fs.readFileSync('USPresident.csv').toString()
-csvjs.parse data, { col_sep: ',', row_sep: "\r\n" }, (row) -> 
+csvjs.parse data, (row) -> 
   console.log row
-

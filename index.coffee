@@ -1,28 +1,34 @@
-fs = require 'fs'
-
 # # csvjs
 # simple csv parser with header row expected
 module.exports = 
-  # get data
-  load: (file_name) -> fs.readFileSync(file_name).toString()
+  DEFAULT_OPTIONS: { col_sep: ',', row_sep: '\r\n', keys: null }
+  # extend obj
+  _extend: (obj, mixin) ->
+    obj[name] = method for name, method of mixin        
+    obj
   # split a string into an array
-  getArray: (data, sep) -> data.split(sep)
+  _split: (data, sep) -> data.split(sep)
   # clean up and trim columns
-  tidy: (field) -> field.trim().replace(/^\"/, '').replace(/\"$/,'').trim()
+  _tidy: (field) -> field.trim().replace(/^\"/, '').replace(/\"$/,'').trim()
   # arraysToKv
-  arraysToKv: (keys, values) ->
+  _merge: (keys, values) ->
     output = {}
-    output[@tidy(key)] = @tidy(values[i]) for key, i in keys
+    output[@_tidy(key)] = @_tidy(values[i]) for key, i in keys
     output
      
-  # parse file and return each row as a pojso
-  parse: (file_name, col_sep, row_sep, cb) ->
-    rows = @getArray(@load(file_name), row_sep)
+  # parse csv data and return each row as a pojso
+  parse: (data, options={}, cb) ->
+    if typeof(options) == 'function'
+      cb = options
+      options = {} 
+
+    options = @_extend(@DEFAULT_OPTIONS, options)
+    rows = @_split(data, options.row_sep)
     # remove last record
-    rows.pop()
+    rows.pop() #if empty line..
     # get headers
-    keys = @getArray rows.shift(), col_sep
+    keys = @_split rows.shift(), options.col_sep unless options.keys?
     for row, c in rows
-      values = @getArray row, col_sep
-      cb(@arraysToKv(keys, values))
+      values = @_split row, options.col_sep
+      cb(@_merge(keys, values))
 
