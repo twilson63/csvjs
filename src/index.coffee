@@ -2,12 +2,15 @@
 # simple csv parser with header row expected
 
 module.exports = 
-  DEFAULT_OPTIONS: { col_sep: ',', row_sep: '\r\n', keys: null }
+  DEFAULT_OPTIONS: { col_sep: ",", row_sep: "\r\n", keys: null }
   # parse csv data and return each row as a pojso
   # params
   # data - csv data you want to parse
   # options - optional overrides to row_separator,
   #           col_seperator, and header.
+  #
+  #
+  # callback returns (err, row)
   #
   parse: (data, options={}, cb) ->
     if typeof(options) == 'function'
@@ -24,12 +27,13 @@ module.exports =
 
     # get headers
     keys = @_split rows.shift(), options.col_sep unless options.keys?
-    
     # return each row
     for row, c in rows
       values = @_split row, options.col_sep
       cb(null, @_merge(keys, values))
-  # private methods
+  
+  # ## private methods
+  #
   # extend obj
   _extend: (obj, mixin) ->
     obj[name] = method for name, method of mixin        

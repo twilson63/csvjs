@@ -45,3 +45,7 @@ task 'build', ->
 
 task 'spec', 'Run Jasmine-Node', ->
   build -> spec -> log ":)", green
+
+# TODO
+# task 'auto', 'Watch and Run Spec', ->
+#   build true, -> spec -> log ":)", green
