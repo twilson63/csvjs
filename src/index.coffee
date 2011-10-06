@@ -2,7 +2,7 @@
 # simple csv parser with header row expected
 
 module.exports = 
-  DEFAULT_OPTIONS: { col_sep: ",", row_sep: "\r\n", keys: null }
+  DEFAULT_OPTIONS: { col_sep: ",", row_sep: "\n", keys: null }
   # parse csv data and return each row as a pojso
   # params
   # data - csv data you want to parse
@@ -29,6 +29,8 @@ module.exports =
     keys = @_split rows.shift(), options.col_sep unless options.keys?
     # return each row
     for row, c in rows
+      # remove cr if present
+      row = row.replace /\r$/, ''
       values = @_split row, options.col_sep
       cb(null, @_merge(keys, values))
   
@@ -36,7 +38,7 @@ module.exports =
   #
   # extend obj
   _extend: (obj, mixin) ->
-    obj[name] = method for name, method of mixin        
+    obj[name] = method for name, method of mixin
     obj
   # split a string into an array
   _split: (data, sep) -> data.split(sep)
