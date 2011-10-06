@@ -13,5 +13,5 @@
     "jasmine-node": ">= 1.0.10",
     "docco": ">0"
   },
-  "engines": { "node": ">= 0.4.11" }
+  "engines": { "node": ">= 0.4.x" }
 }
