@@ -41,7 +41,7 @@ module.exports =
   # split a string into an array
   _split: (data, sep) -> data.split(sep)
   # clean up and trim columns
-  _tidy: (field) -> field.trim().replace(/^\"/, '').replace(/\"$/,'').trim()
+  _tidy: (field) -> field?.trim().replace(/^\"/, '').replace(/\"$/,'').trim()
   # merge arrays into an object
   _merge: (keys, values) ->
     output = {}
