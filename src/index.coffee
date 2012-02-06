@@ -34,7 +34,7 @@ class CsvJs extends require('events').EventEmitter
       values = @_split row, options.col_sep
       cb(null, @_merge(keys, values))
     
-    @emit 'end'
+    @emit 'end', rows.length
 
   # ## private methods
   #
