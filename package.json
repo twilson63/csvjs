@@ -1,7 +1,7 @@
 {
   "name": "csvjs",
   "description": "A csv parser for nodejs",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "homepage": "",
   "author": "Tom Wilson",
   "private": false,

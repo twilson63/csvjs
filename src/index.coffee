@@ -1,7 +1,7 @@
 # # csvjs
 # simple csv parser with header row expected
 
-module.exports = 
+class CsvJs extends require('events').EventEmitter 
   DEFAULT_OPTIONS: { col_sep: ",", row_sep: "\n", keys: null }
   # parse csv data and return each row as a pojso
   # params
@@ -33,7 +33,9 @@ module.exports =
       row = row.replace /\r$/, ''
       values = @_split row, options.col_sep
       cb(null, @_merge(keys, values))
-  
+    
+    @emit 'end'
+
   # ## private methods
   #
   # extend obj
@@ -51,3 +53,5 @@ module.exports =
     output
       
   
+
+module.exports = new CsvJs()
